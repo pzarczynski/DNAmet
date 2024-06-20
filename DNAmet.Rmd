@@ -1,0 +1,16 @@
+```{r}
+rm(list = ls())
+```
+
+```{r}
+library(maftools)
+```
+
+```{r}
+maf <- get(load("TCGA-COAD_Simple_Nucleotide_Variation.Rdata"))
+```
+
+```{r}
+read.maf(maf)
+```
+

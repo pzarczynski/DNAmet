@@ -3,9 +3,6 @@ rm(list = ls())
 ```
 
 ```{r}
-library(DT)
-library(minfi)
-library(maftools)
 library(TCGAbiolinks)
 ```
 
@@ -18,7 +15,11 @@ query_met <- GDCquery(
 )
 
 GDCdownload(query_met)
-metharr <- GDCprepare(query)
+GDCprepare(
+	query, 
+	save = TRUE,
+	save.filename = "TCGA-COAD_Dna_Methylation.Rdata"
+)
 ```
 
 ```{r}
@@ -31,5 +32,9 @@ query_mut <- GDCquery(
 )
 
 GDCdownload(query_mut)
-maf <- GDCprepare(query_mut)
+GDCprepare(
+	query_mut, 
+	save = TRUE, 
+	save.filename = "TCGA-COAD_Simple_Nucleotide_Variation.Rdata"
+)
 ```

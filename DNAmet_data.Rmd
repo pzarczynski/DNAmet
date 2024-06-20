@@ -1,0 +1,55 @@
+```{r}
+rm(list = ls())
+```
+
+```{r}
+wd = getwd()
+```
+
+```{r}
+BiocManager::install(c("TCGAbiolinks", "GenomicDataCommons", "minfi", "maftools"))
+```
+
+```{r}
+library(DT)
+library(TCGAbiolinks)
+library(GenomicDataCommons)
+library(minfi)
+```
+
+```{r}
+query_met <- GDCquery(project = "TCGA-COAD",
+                      data.category = "DNA Methylation",
+                      platform = c("Illumina Human Methylation 450"))
+```
+
+```{r}
+download.gdc <- function(manifest, directory) {
+  dir.create(directory)
+  gdc_set_cache(directory = directory)
+  
+  gdcdata(manifest$id,
+          progress = TRUE,
+          access_method = "api")
+}
+
+path = "Met_Data/"
+
+manifest <- TCGAbiolinks::getManifest(query_met)[1:5, ]
+fnames <- download.gdc(manifest, path)
+```
+
+Move all IDAT files to "Met_Data/" dir before the next step.
+
+```{r}
+files <- unique(dir(path, pattern = "*.idat", recursive = TRUE) %>%
+                  paste0(path, .) %>%
+                  stringr::str_remove(., "(_Red.idat|_Grn.idat)"))
+
+files
+```
+
+
+```{r}
+read.metharray(files)
+```

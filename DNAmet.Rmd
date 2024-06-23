@@ -7,10 +7,11 @@ library(maftools)
 ```
 
 ```{r}
-maf <- get(load("TCGA-COAD_Simple_Nucleotide_Variation.Rdata"))
+load("TCGA-COAD_Simple_Nucleotide_Variation.RData")
+maf <- read.maf(data)
+plotmafSummary(maf)
 ```
-
 ```{r}
-read.maf(maf)
+View(data)
 ```
 

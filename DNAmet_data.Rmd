@@ -18,7 +18,7 @@ GDCdownload(query_met)
 GDCprepare(
 	query, 
 	save = TRUE,
-	save.filename = "TCGA-COAD_Dna_Methylation.Rdata"
+	save.filename = "TCGA-COAD_DNA_Methylation.RData"
 )
 ```
 
@@ -35,6 +35,6 @@ GDCdownload(query_mut)
 GDCprepare(
 	query_mut, 
 	save = TRUE, 
-	save.filename = "TCGA-COAD_Simple_Nucleotide_Variation.Rdata"
+	save.filename = "TCGA-COAD_Simple_Nucleotide_Variation.RData"
 )
 ```
